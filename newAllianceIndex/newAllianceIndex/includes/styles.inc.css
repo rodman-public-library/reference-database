@@ -1,0 +1,8 @@
+#top-bar #main-logo{
+	float: left;
+	margin-left = 15px;
+}
+#top-bar #social-media{
+	float: right;
+	margin-right: 15px;
+}

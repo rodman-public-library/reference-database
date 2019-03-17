@@ -1,0 +1,30 @@
+#nav-styles {
+  background-color: #3B77B6;
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+#nav-text-color {
+  color: white;
+}
+
+#nav-text-color:hover {
+  color: #3B7786;
+}
+
+#search-section {
+  width: 60%;
+}
+
+#search-index {
+  width: 919px;
+}
+
+#data-type {
+  background-color: rgb(59,119,182);
+}
+
+.dropdown.nav-item:hover .dropdown-content {
+  display: block;
+}
+

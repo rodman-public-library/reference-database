@@ -4,7 +4,8 @@ This program is offered as is. Rodman Public Library will not be held responsibl
 
 This website has multiple directories. They are organized like so:
 
-```The root folder (/newAllianceIndex/) contains three subdirectories, and 33 files.
+```
+The root folder (/newAllianceIndex/) contains three subdirectories, and 33 files.
 	Subdirectory (/newAllianceIndex/addtionsLogon/) Contains three subdirectories, and 12 files.
 		Subdirectory(/newAllianceIndex/addtionsLogon/includes/) This directory includes our logo file, a connection file to connect to the database, a styles file that styles the heading (partially), and a search file that determines the search results for.... nothing. This file is not used, but please keep that file as we need to have it for reference purposes.
 			File connect.inc.php DO NOT MAKE CHANGES TO THIS FILE. THIS FILE CONTAINS THE MEANS TO CONNECT TO THE LOGIN DATABASE. If the database credentials are updated, change the four variables that are aptly named above the comment that says DONT TOUCH BELOW thIS LINE.

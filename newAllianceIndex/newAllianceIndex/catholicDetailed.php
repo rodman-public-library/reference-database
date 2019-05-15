@@ -3,8 +3,8 @@
 	//includes the connection file
 	include 'includes/connect.inc.php';
 	$recordNum = $_GET['recordNumPassed'];
-	$key = array_search($recordNum, $_SESSION['inNav']);
-	$totalNumberItems = count($_SESSION['inNav']);
+	$key = array_search($recordNum, $_SESSION['inNavC']);
+	$totalNumberItems = count($_SESSION['inNavC']);
 	$backrecord = $key - 1;
 	$forwardRecord = $key + 1;
 	$checkSame = 0;
@@ -59,19 +59,19 @@
 <body>
     <?php include 'includes/header.inc.php';   
     if($backrecord >= 0 & $checkSame === 0){
-		$recordNum = $_SESSION['inNav'][$backrecord];
-		$recordNumFor = $_SESSION['inNav'][$forwardRecord];
+		$recordNum = $_SESSION['inNavC'][$backrecord];
+		$recordNumFor = $_SESSION['inNavC'][$forwardRecord];
 		
 		echo '<a href="catholicDetailed.php?recordNumPassed='. $recordNumFor .'"style="float: right; padding-left:1em; margin-right: 1em; font-size: 32px;">&#8594;</a>';
 		echo '<a href="catholicDetailed.php?recordNumPassed='. $recordNum. '"style="float: right; padding-left:1em; font-size: 32px;">&#8592;</a>';
 	}
 	
 	elseif($checkSame === 1){
-		$recordNum = $_SESSION['inNav'][$backrecord];
+		$recordNum = $_SESSION['inNavC'][$backrecord];
 		echo '<a href="catholicDetailed.php?recordNumPassed='. $recordNum. '"style="float: right; padding-left:1em; font-size: 32px;">&#8592;</a>';
 	}
 	elseif($backrecord <= 0){
-		$recordNum = $_SESSION['inNav'][$forwardRecord];
+		$recordNum = $_SESSION['inNavC'][$forwardRecord];
 		echo '<a href="catholicDetailed.php?recordNumPassed='. $recordNum .'"style="float: right; padding-left:1em; margin-right: 1em; font-size: 32px;">&#8594;</a>';
 	}
 	?>  

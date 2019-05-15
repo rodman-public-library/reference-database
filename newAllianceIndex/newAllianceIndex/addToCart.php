@@ -30,7 +30,6 @@
 	<head>
 	
 	<script>
-	
 		function goBack() {
 			window.history.go(-2);
 		}

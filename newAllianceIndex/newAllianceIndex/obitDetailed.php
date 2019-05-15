@@ -3,15 +3,15 @@
 	//includes the connection file
 	include 'includes/connect.inc.php';
 	$recordNum = $_GET['recordNumPassed'];
-	$key = array_search($recordNum, $_SESSION['inNav']);
-	$totalNumberItems = count($_SESSION['inNav']);
+	$key = array_search($recordNum, $_SESSION['inNavO']);
+	$totalNumberItems = count($_SESSION['inNavO']);
 	$backrecord = $key - 1;
 	$forwardRecord = $key + 1;
 	$checkSame = 0;
 	if ($forwardRecord === $totalNumberItems){
 		$checkSame = 1;
 	}
-	$sql = "SELECT Name, newspaperTitle, Date, Page, Event, Summary, recordNum FROM `Obituaries` Where recordNum = ". $recordNum . ";";
+	$sql = "SELECT Name, newspaperTitle, Date, Page, Event, Summary, recordNum, illustration FROM `Obituaries` Where recordNum = ". $recordNum . ";";
 	//Opens connection from connection file
 	$conn = OpenCon();
 	$results = $conn->query($sql);
@@ -56,22 +56,22 @@
 	</style>
 </head>
 
-<body>
+<body onLoad="console.log('<?php echo $_POST['keywordSearch'];?>');">
     <?php include 'includes/header.inc.php';   
     if($backrecord >= 0 & $checkSame === 0){
-		$recordNum = $_SESSION['inNav'][$backrecord];
-		$recordNumFor = $_SESSION['inNav'][$forwardRecord];
+		$recordNum = $_SESSION['inNavO'][$backrecord];
+		$recordNumFor = $_SESSION['inNavO'][$forwardRecord];
 		
 		echo '<a href="obitDetailed.php?recordNumPassed='. $recordNumFor .'"style="float: right; padding-left:1em; margin-right: 1em; font-size: 32px;">&#8594;</a>';
 		echo '<a href="obitDetailed.php?recordNumPassed='. $recordNum. '"style="float: right; padding-left:1em; font-size: 32px;">&#8592;</a>';
 	}
 	
 	elseif($checkSame === 1){
-		$recordNum = $_SESSION['inNav'][$backrecord];
+		$recordNum = $_SESSION['inNavO'][$backrecord];
 		echo '<a href="obitDetailed.php?recordNumPassed='. $recordNum. '"style="float: right; padding-left:1em; font-size: 32px;">&#8592;</a>';
 	}
 	elseif($backrecord <= 0){
-		$recordNum = $_SESSION['inNav'][$forwardRecord];
+		$recordNum = $_SESSION['inNavO'][$forwardRecord];
 		echo '<a href="obitDetailed.php?recordNumPassed='. $recordNum .'"style="float: right; padding-left:1em; margin-right: 1em; font-size: 32px;">&#8594;</a>';
 	}
 	?>
@@ -122,6 +122,14 @@
             </div>
             <div class="col">
                 <p><?php echo $row['Event']; ?></p>
+            </div>
+        </div>
+		<div class="row" id="detailedRow">
+            <div class="col float-left" id="detailedResults" style="width: 15%;">
+                <p>Illustration:</p>
+            </div>
+            <div class="col">
+                <p><?php echo $row['illustration']; ?></p>
             </div>
         </div>
 		<p class="copyright" id="copyrightPrint">Rodman Public Library © 2019</p>

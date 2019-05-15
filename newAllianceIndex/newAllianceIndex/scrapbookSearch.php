@@ -1,3 +1,6 @@
+<?php
+   unset($_SESSION['inNav']);
+?>
 <!DOCTYPE html>
 <html>
 
@@ -19,7 +22,7 @@
 <body>
     <?php include 'includes/header.inc.php'; ?>
     <div class="login-clean">
-        <form action="scrapbookResults.php" method="post">
+        <form action="scrapbookResults.php" method="GET">
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration">
                 <h3 id="form-heading">Search The Scrapbook</h3>

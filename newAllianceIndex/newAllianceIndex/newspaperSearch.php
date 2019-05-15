@@ -1,3 +1,10 @@
+<?php
+	unset($_SESSION['inNavN']);
+	unset($_SESSION['inNavO']);
+	unset($_SESSION['inNavM']);
+	unset($_SESSION['inNavS']);
+	unset($_SESSION['inNavC']);
+?>
 <!DOCTYPE html>
 <html>
 
@@ -19,7 +26,7 @@
 <body>
     <?php include 'includes/header.inc.php'; ?>   
     <div class="login-clean">
-        <form action="newspaperResults.php" method="post">
+        <form action="newspaperResults.php" method="GET">
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration">
                 <h3 id="form-heading">Search The Newspapers</h3>

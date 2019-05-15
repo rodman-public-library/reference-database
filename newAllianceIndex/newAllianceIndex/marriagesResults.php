@@ -6,11 +6,11 @@
 	if(!isset($_SESSION['navCounter'])){
 		$_SESSION['navCounter'] = 0;
 	}
-	$_SESSION['inNav'] = array();
+	$_SESSION['inNavM'] = array();
 	//includes the connection file
 	include 'includes/connect.inc.php';
-	$keyword = $_POST['keywordSearch'];
-	$date = $_POST['dateSearch'];
+	$keyword = $_GET['keywordSearch'];
+	$date = $_GET['dateSearch'];
 	if(strpos($keyword, ' ') !== false){
 		$checkSpace = 1;
 	}
@@ -89,8 +89,8 @@
 							echo '<tr>';
 							for($i = 0; $i <= 4; $i++){
 									if($i === 0){
-										$_SESSION['inNav'][] = $row['recordNum'];
-										$_SESSIONp['navCounter']++;
+										$_SESSION['inNavM'][] = $row['recordNum'];
+										$_SESSION['navCounter']++;
 										echo '<td><a href="marriageDetailed.php?recordNumPassed='. $row['recordNum'] .'">'. $row['groom'] .'<br>' . $row['bride'] . '</a></td>';
 									}
 									elseif($i === 1){

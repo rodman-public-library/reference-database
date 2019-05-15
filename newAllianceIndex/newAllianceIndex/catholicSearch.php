@@ -1,3 +1,10 @@
+<?php
+	unset($_SESSION['inNavN']);
+	unset($_SESSION['inNavO']);
+	unset($_SESSION['inNavM']);
+	unset($_SESSION['inNavS']);
+	unset($_SESSION['inNavC']);
+?>
 <!DOCTYPE html>
 <html>
 
@@ -19,10 +26,10 @@
 <body>
     <?php include 'includes/header.inc.php'; ?>  
     <div class="login-clean">
-        <form action="catholicResults.php" method="post">
+        <form action="catholicResults.php" method="GET">
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration">
-                <h3 id="form-heading">Search The Catholic Obituaries</h3>
+                <h3 id="form-heading">Search The Catholic Cemetery Records</h3>
             </div>
             <div class="form-group"><input class="form-control" type="search" name="keywordSearch" placeholder="Enter Keyword Here" id="form-search" style="background-color: rgb(255,255,255);"></div>
             <p class="text-center" style="color: rgb(255,255,255);">---- OR ----</p><input class="form-control" type="date" name="dateSearch">

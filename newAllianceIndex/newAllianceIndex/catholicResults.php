@@ -6,11 +6,11 @@
 	if(!isset($_SESSION['navCounter'])){
 		$_SESSION['navCounter'] = 0;
 	}
-	$_SESSION['inNav'] = array();
+	$_SESSION['inNavC'] = array();
 	//includes the connection file
 	include 'includes/connect.inc.php';
-	$keyword = $_POST['keywordSearch'];
-	$date = $_POST['dateSearch'];
+	$keyword = $_GET['keywordSearch'];
+	$date = $_GET['dateSearch'];
 	if(strpos($keyword, ' ') !== false){
 		$checkSpace = 1;
 	}
@@ -80,7 +80,7 @@
 <body>
     <?php include 'includes/header.inc.php'; ?>  
     <section id="resultsTable">
-		<h1>Catholic Obituaries</h1>
+		<h1>Catholic Cemetery Records</h1>
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -98,8 +98,8 @@
 							echo '<tr>';
 							for($i = 0; $i <= 4; $i++){
 									if($i === 0){
-										$_SESSION['inNav'][] = $row['recordNum'];
-										$_SESSIONp['navCounter']++;
+										$_SESSION['inNavC'][] = $row['recordNum'];
+										$_SESSION['navCounter']++;
 										echo '<td><a href="catholicDetailed.php?recordNumPassed='. $row['recordNum'] .'">'. $row['firstlast'] .'</a></td>';
 									}
 									elseif($i === 1){

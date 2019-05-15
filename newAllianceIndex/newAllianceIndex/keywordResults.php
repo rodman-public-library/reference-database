@@ -7,9 +7,14 @@
 	if(!isset($_SESSION['navCounter'])){
 		$_SESSION['navCounter'] = 0;
 	}
+	$_SESSION['inNavN'] = array();
+	$_SESSION['inNavO'] = array();
+	$_SESSION['inNavM'] = array();
+	$_SESSION['inNavS'] = array();
+	$_SESSION['inNavC'] = array();
 	include 'includes/connect.inc.php';
 	$conn = OpenCon();
-	$keyword = $_POST['keywordSearch'];
+	$keyword = $_GET['keywordSearch'];
 	$keyword = $conn->real_escape_string($keyword);
 	if(strpos($keyword, ' ') !== false){
 		$checkSpace = 1;
@@ -72,7 +77,7 @@
 	}
 	else{
 		//For single word searches
-		$sqlNewspaper = "Select title, newsDate, recordNum FROM `newspaper` Where (title LIKE '% ". $keyword ." %' OR summary LIKE '% ". $keyword ." %')";
+		$sqlNewspaper = "Select title, newsDate, recordNum FROM `newspaper` Where (title LIKE '% ". $keyword ." %' OR summary LIKE '% ". $keyword ." %') ORDER By newsDate DESC";
 		$sqlObit = "SELECT Name, Date, Page, Event, recordNum FROM `Obituaries` Where Name LIKE '%". $keyword ."%' ORDER By Date DESC";
 		$sqlMarriages = "SELECT groom, bride, marriageDate, page, recordNum FROM `Marriages` Where (bride LIKE '%". $keyword . "%' OR groom LIKE '%". $keyword . "%') Order BY marriageDate DESC";
 		$sqlScrapbook = "SELECT title, date, scrapbookpages, subject, recordNum FROM `scrapbook` Where (title LIKE '% " .$keyword. "  %' or  title LIKE '% " .$keyword. " %' or subject LIKE '% " .$keyword. " %' or event LIKE '% " .$keyword. " %' or summary LIKE '% " .$keyword. " %') Order BY date DESC";
@@ -138,6 +143,8 @@
 												echo '<tr>';
 												for($i = 0; $i <= 2; $i++){
 														if($i === 0){
+															$_SESSION['inNavN'][] = $row['recordNum'];
+															$_SESSION['navCounter']++;
 															echo '<td><a href="newspaperDetailed.php?recordNumPassed='. $row['recordNum'] .'">'. $row['title'] .'</a></td>';
 															//inNav[0] starts.
 														}
@@ -185,6 +192,8 @@
 												echo '<tr>';
 												for($i = 0; $i <= 2; $i++){
 														if($i === 0){
+															$_SESSION['inNavO'][] = $row['recordNum'];
+															$_SESSION['navCounter']++;
 															echo '<td><a href="obitDetailed.php?recordNumPassed='. $row['recordNum'] .'">'. $row['Name'] .'</a></td>';
 														}
 														elseif($i === 1){
@@ -233,6 +242,8 @@
 												echo '<tr>';
 												for($i = 0; $i <= 2; $i++){
 														if($i === 0){
+															$_SESSION['inNavM'][] = $row['recordNum'];
+															$_SESSION['navCounter']++;
 															echo '<td><a href="marriageDetailed.php?recordNumPassed='. $row['recordNum'] .'">'. $row['groom'] .'<br>' . $row['bride'] .'</a></td>';
 														}
 														elseif($i === 1){
@@ -281,6 +292,8 @@
 												echo '<tr>';
 												for($i = 0; $i <= 2; $i++){
 														if($i === 0){
+															$_SESSION['inNavS'][] = $row['recordNum'];
+															$_SESSION['navCounter']++;
 															echo '<td><a href="scrapbookDetailed.php?recordNumPassed='. $row['recordNum'] .'">'. $row['title'] .'</a></td>';
 														}
 														elseif($i === 1){
@@ -329,6 +342,8 @@
 												echo '<tr>';
 												for($i = 0; $i <= 2; $i++){
 														if($i === 0){
+															$_SESSION['inNavC'][] = $row['recordNum'];
+															$_SESSION['navCounter']++;
 															echo '<td><a href="catholicDetailed.php?recordNumPassed='. $row['recordNum'] .'">'. $row['firstlast'] .'</a></td>';
 														}
 														elseif($i === 1){

@@ -6,14 +6,14 @@
 	if(!isset($_SESSION['navCounter'])){
 		$_SESSION['navCounter'] = 0;
 	}
-	$_SESSION['inNav'] = array();
+	$_SESSION['inNavN'] = array();
 	//includes the connection file
 	
 	include 'includes/connect.inc.php';
 	$conn = OpenCon();
-	$keyword = $_POST['keywordSearch'];
+	$keyword = $_GET['keywordSearch'];
 	$keyword = $conn->real_escape_string($keyword);
-	$date = $_POST['dateSearch'];
+	$date = $_GET['dateSearch'];
 	$month = date("m", strtotime($date));
 	$day = date("d", strtotime($date));
 	if($month === '01' && $day = '01'){
@@ -173,8 +173,8 @@
 								echo '<tr>';
 								for($i = 0; $i <= 4; $i++){
 										if($i === 0){
-											$_SESSION['inNav'][] = $row['recordNUM'];
-											$_SESSIONp['navCounter']++;
+											$_SESSION['inNavN'][] = $row['recordNUM'];
+											$_SESSION['navCounter']++;
 											echo '<td><a href="newspaperDetailed.php?recordNumPassed='. $row['recordNUM'] .'">'. $row['title'] .'</a></td>';
 										}
 										elseif($i === 1){
